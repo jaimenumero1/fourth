@@ -1,6 +1,11 @@
 package beans;
 
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
 
 /***
  *Create a Bean class Food that has following fields:
@@ -8,12 +13,18 @@ import java.time.LocalDateTime;
  *  Override and Implement equals() , hashcode(), compareTo() methods,
  *  that will help you to perform comparison and sorting operations.
  */
+@NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class Food {
-int id;
-LocalDateTime order_placed;
-int order_status;
-LocalDateTime order_update;
-int custom_user_id;
+
+    public int id;
+    public String description;
+    public int food_type;
+    public String image_url;
+    public String name;
+    public double price;
+
 
 //private static final
 }

@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class Config {
 
-    static Properties properties;
+  public   static Properties properties;
     static final String FILE_PATH;
 
 	static {
