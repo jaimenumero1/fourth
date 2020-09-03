@@ -58,7 +58,7 @@ public class Employees {
 
     public static ResultSet getAllFromDataBaseEmployeesTable() {
         try {
-            String query = "SELECT * FROM employees;";
+            String query = "SELECT * FROM employees ORDER BY employeeNumber ASC;";
             ResultSet rs = DataBaseUtils.executeQuery(query);
             return rs;
         } catch (SQLException e) {

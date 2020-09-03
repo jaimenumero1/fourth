@@ -55,10 +55,7 @@ public class TestDatabaseSteps {
 
     @When("^you add records from the table below$")
     public void you_add_records_from_the_table_below(List<Employees> employees) throws SQLException {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-        // E,K,V must be a scalar (String, Integer, Date, enum etc)
+
         String query = "INSERT INTO employees VALUES(?,?,?,?,?,?,?,?);";
         boolean isInserted;
         for (Employees employeesObject : employees) {

@@ -1,8 +1,8 @@
 package steps;
 
 
-import org.junit.After;
-import org.junit.Before;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import dataBaseDriverutils.db.DataBaseUtils;
 
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ public class Hooks {
     //Implement DB Connection Steps here
     @Before
     public void openConnection() throws SQLException {
-        DataBaseUtils.open("food_delivery_db1");
+        DataBaseUtils.openTestDataBase();
     }
 
 
