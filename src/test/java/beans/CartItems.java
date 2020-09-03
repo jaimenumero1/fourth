@@ -18,7 +18,7 @@ import java.util.Objects;
 @AllArgsConstructor
 
 public class CartItems {
-
+//no access to Database
     public int id;
     public int quantity;
     public double total_price;
