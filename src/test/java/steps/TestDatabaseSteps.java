@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TestDatabaseSteps {
-
+    Employees emp1 = new Employees();
 
     @Given("^a connection to a database is started$")
     public void a_connection_to_a_database_is_started() throws Throwable {
@@ -79,7 +79,7 @@ public class TestDatabaseSteps {
         ResultSet allEmployees = Employees.getAllFromDataBaseEmployeesTable();
         System.out.println("====================" + allEmployees);
         List<Employees> databaseEmployeeList = new ArrayList<>();
-        Employees emp1 = new Employees();
+
         databaseEmployeeList = emp1.processRSTobeanList(allEmployees);
         for(int i = 0;i < databaseEmployeeList.size();i++){
             System.out.println("*********************** " + databaseEmployeeList.get(i));
@@ -97,11 +97,7 @@ public class TestDatabaseSteps {
 
     }
 
-    @Then("^database should match new Updated <\"([^\"]*)\">$")
-    public void database_should_match_new_Updated(String arg1) throws Throwable {
 
-
-    }
 
 
     @When("^employee ([^\"]*) and ([^\"]*) changes email, change to new ([^\"]*)$")
@@ -119,8 +115,20 @@ public class TestDatabaseSteps {
     @Then("^database should match new Updated ([^\"]*)$")
     public void databaseShouldMatchNewUpdatedEmail(String newEmail) {
         System.out.println(newEmail);
+        String query = "SELECT * FROM employees ;";
+        try {
+            ResultSet newResultSet = DataBaseUtils.executeQuery(query);
+            List<String> emailsFromDataBase = new ArrayList<>();
+            while (newResultSet.next()){
+                emailsFromDataBase.add(newResultSet.getString("email"));
+            }
+            System.out.println("&&&&&&&&&&&&&&&&&" + emailsFromDataBase);
+            Assert.assertTrue("Emails may not be Present in Database",emailsFromDataBase.contains(newEmail));
+//
 
-
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 
