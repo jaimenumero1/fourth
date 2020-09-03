@@ -3,7 +3,7 @@ Feature: test test class
 #  Background:
 #    Given a connection to a database is started
 ## 2 lines above where not needed Before hooks and After hooks are working adjusted openMethod and then adjusted
-## imports for the hooks to apply to Cucumber Feature files then imports must come from Cucumber.
+## imports for the hooks to apply to Cucumber Feature files then imports must come from Cucumber  (NOT Junit).
   Scenario: Empty a table from a database
     When you remove all records from a "employees" table
     Then employees table should be empty
