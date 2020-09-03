@@ -50,6 +50,7 @@ public class DataBaseUtils<T> {
 
     // public static void connectToDatabase(){}
     public static void executeUpdate() {
+
     }
 
     public static <T> T executeQueryToBean(String query, Class<T> c) throws SQLException {

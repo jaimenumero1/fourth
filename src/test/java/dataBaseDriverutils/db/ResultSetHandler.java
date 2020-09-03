@@ -1,5 +1,7 @@
 package dataBaseDriverutils.db;
 
+import beans.Employees;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -11,7 +13,9 @@ import java.util.Map;
 public class ResultSetHandler {
 
 
-    public static List<Map<String, Object>> rsToList(ResultSet rs) {
+    private static Object Employees;
+
+    public static List<Map<String, Object>> rsToListOfMaps(ResultSet rs) {
         try {
             List<Map<String, Object>> table = new ArrayList<>();
             List<String> headers = getHeaders(rs); // Store headers
@@ -31,11 +35,13 @@ public class ResultSetHandler {
 
 
 
-    private static List<String> getHeaders(ResultSet rs) throws SQLException {
+
+    public static List<String> getHeaders(ResultSet rs) throws SQLException {
         try {
             List<String> headers = new ArrayList<>();
             // get MetaData (Data about data)
             ResultSetMetaData metaData = rs.getMetaData(); // Metadata contains names of the columns
+
             int num_of_colums = metaData.getColumnCount(); // Returns the number of columns in our result set
             for (int i = 1; i <= num_of_colums; i++) {
                 headers.add(metaData.getColumnName(i)); //getColumnName(i)  Returns the name of the column, expects the index
