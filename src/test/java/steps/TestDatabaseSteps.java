@@ -81,13 +81,14 @@ public class TestDatabaseSteps {
         List<Employees> databaseEmployeeList = new ArrayList<>();
 
         databaseEmployeeList = emp1.processRSTobeanList(allEmployees);
-        for(int i = 0;i < databaseEmployeeList.size();i++){
+        for (int i = 0; i < databaseEmployeeList.size(); i++) {
             System.out.println("*********************** " + databaseEmployeeList.get(i));
             System.out.println("*********************** " + employees.get(i));
         }
         //System.out.println("*****" + databaseEmployeeList);
         //System.out.println("*****" + employees);
         Assert.assertTrue(employees.containsAll(databaseEmployeeList));
+
     }
 
 

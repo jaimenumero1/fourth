@@ -1,6 +1,7 @@
 package steps;
 
 import beans.Employees;
+import com.mysql.cj.protocol.Resultset;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,6 +9,8 @@ import cucumber.api.java.en.When;
 import dataBaseDriverutils.db.DataBaseUtils;
 import org.junit.Assert;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Add200EmployeesToDatabaseSteps {
@@ -26,7 +29,7 @@ public class Add200EmployeesToDatabaseSteps {
     @When("^you fill data base with Following table$")
     public void you_fill_data_base_with_Following_table(List<Employees> employees) throws Throwable {
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             String query = "INSERT INTO employees VALUES(?,?,?,?,?,?,?,?);";
             boolean isInserted;
             for (Employees employeesObject : employees) {
@@ -53,5 +56,48 @@ public class Add200EmployeesToDatabaseSteps {
         Assert.assertTrue(true);
     }
 
+
+    @When("^the following query \"([^\"]*)\" is executed with \"([^\"]*)\" as lastname$")
+    public void the_following_query_is_executed_with_as_lastname(String query, String lastName) throws Throwable {
+        DataBaseUtils.executeQuery(query,lastName);
+    }
+
+    @When("^query \"([^\"]*)\" inserts \"([^\"]*)\"  \"([^\"]*)\"  \"([^\"]*)\" is provided$")
+    public void query_inserts_is_provided(String query, String all, String employees, String lastName) {
+
+        ResultSet rs = DataBaseUtils.executeQuery(query,all,employees, lastName);
+        Employees newEployees = new Employees();
+        System.out.println(newEployees.processRSTobeanList(rs));
+
+//try {
+//    System.out.println("==*== " + query + all + employees + lastName);
+//    ResultSet rs = null;
+//
+//    rs = DataBaseUtils.executeQuery(query, all, employees, lastName);
+////        String [] newArray = new String[3];
+////        newArray[0] = "*";
+////        newArray[1] = employees;
+////        newArray[2] = lastName;
+////        ResultSet rs2 = DataBaseUtils.executeQuery(query,newArray);
+////        System.out.println(rs2.toString());
+//    System.out.println(rs.toString());
+//}catch (Exception e){
+//    e.printStackTrace();
+//}
+    }
+
+
+
+    @Then("^make sure the resultSet is accurate$")
+    public void make_sure_the_resultSet_is_accurate() {
+
+    }
+
+
+
+    @Then("^make sure the multiple resultSet is accurate$")
+    public void make_sure_the_multiple_resultSet_is_accurate() throws Throwable {
+
+    }
 
 }
